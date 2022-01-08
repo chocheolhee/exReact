@@ -22,7 +22,7 @@ function App() {
             </Navbar>
             <div className="Jumbotron">
                 <h1>20% Season Off</h1>
-                <p>adsfasdfasdfasdf</p>
+                <p>안녕안녕</p>
                 <p>
                     {" "}
                     <Button variant="primary">Primary</Button>
