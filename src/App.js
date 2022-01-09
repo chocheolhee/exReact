@@ -4,6 +4,8 @@ import "./App.css";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import Data from "./data.js";
+import Detail from "./Detail.js";
+import { Link, Route, Switch } from "react-router-dom";
 
 function App() {
     let [shoes, shoes변경] = useState(Data);
@@ -14,27 +16,44 @@ function App() {
                 <Container>
                     <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
+                        <Nav.Link>
+                            {" "}
+                            <Link to={"/"}>Home</Link>
+                        </Nav.Link>
+                        <Nav.Link>
+                            <Link to={"/detail"}>Detail</Link>
+                        </Nav.Link>
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
-            <div className="Jumbotron">
-                <h1>20% Season Off</h1>
-                <p>안녕안녕gdgd</p>
-                <p>
-                    {" "}
-                    <Button variant="primary">Primary</Button>
-                </p>
-            </div>
-            <div className="container">
-                <div className="row">
-                    {shoes.map((a, i) => {
-                        return <Card shoes={shoes[i]} i={i} key={i} />;
-                    })}
-                </div>
-            </div>
+
+            <Switch>
+                <Route exact path="/">
+                    <div className="Jumbotron">
+                        <h1>20% Season Off</h1>
+                        <p>안녕안녕gdgd</p>
+                        <p>
+                            {" "}
+                            <Button variant="primary">보기</Button>
+                        </p>
+                    </div>
+
+                    <div className="container">
+                        <div className="row">
+                            {shoes.map((a, i) => {
+                                return <Card shoes={shoes[i]} i={i} key={i} />;
+                            })}
+                        </div>
+                    </div>
+                </Route>
+                <Route path="/detail/:id">
+                    <Detail shoes={shoes} />
+                </Route>
+                <Route path="/:id">
+                    <div>asdsadasd</div>
+                </Route>
+            </Switch>
         </div>
     );
 }
